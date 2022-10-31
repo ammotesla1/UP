@@ -33,10 +33,8 @@ public class Employee {
 
     private String middleName;
     @NotNull(message = "Поле не моет быть пустым")
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9] [0-9][0-9][0-9][0-9][0-9][0-9]", message = "Паспорт не соответсвует маске ввода")
     private String passport;
     @NotNull(message = "Поле не может быть пустым")
-    @Pattern(regexp = "[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]", message = "Дата не соотвествует маске ввода")
     private String birthday;
 
 
