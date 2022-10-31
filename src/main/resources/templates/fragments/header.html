@@ -1,0 +1,26 @@
+<div th:fragment="headerMain">
+  <header class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/car" class="nav-link px-2 text-white">Таблица машин</a></li>
+          <li><a href="/employee" class="nav-link px-2 text-white">Таблица сотрудников</a></li>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <ul>
+          <li><a href="/login" class="nav-link px-2 text-secondary">Авторизация</a></li>
+          <li><a href="/registration" class="nav-link px-2 text-secondary">Регистрация</a></li>
+          <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти"/>
+          </form>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
