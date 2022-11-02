@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление плана поставок</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <h2 style="margin-left: 20px; margin-top: 12px;">Создание плана закупок</h2>
+    <form th:object="${plan}" method="post" style="margin-left: 20px;">
+        <div>Дата подписания</div>
+        <input minlength="1" type="text" name="Date_Of_Registration" placeholder="Дата подписания" style="margin-bottom: 8px"> <br>
+        <div>Имя курьера</div>
+
+        <div style="margin-bottom: 8px">
+            <select name="supplier">
+                <div th:each="el : ${listSupplier}">
+                    <option th:text="${el.id} + ' ' + ${el.nameSupplier}"></option>
+                </div>
+            </select>
+        </div>
+        <div>Фамилия</div>
+
+        <div style="margin-bottom: 8px">
+            <select name="employee">
+                <div th:each="el : ${listEmployee}">
+                    <option th:text="${el.id} + ' ' + ${el.surname}"></option>
+                </div>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-outline-success" value="Создать" style="margin-bottom: 10px"> <br>
+    </form>
+    <div style="margin-left: 20px; margin-bottom: 30px">
+        <a class="btn btn-outline-secondary" href="/plan">Назад</a>
+    </div>
+</body>
+</html>

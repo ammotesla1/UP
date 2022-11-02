@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <h2 style="margin-left: 20px; margin-top: 12px;">Точный поиск</h2>
+    <form action="/order/filter-direct" method="get" style="margin-left: 20px">
+        <input style="background: azure;min-width: 100px; width: 300px" class="form-control" type="text" name="searchName" placeholder="Дата оформления заказа"></br>
+        <input style="margin-top: 10px" type="submit" class="btn btn-outline-info" value="Найти">
+    </form>
+
+    <h2 style="margin-left: 20px; margin-top: 12px;">Не точный поиск</h2>
+    <form action="/order/filter-contains" method="get" style="margin-left: 20px">
+        <input style="background: azure;min-width: 100px; width: 300px" class="form-control" type="text" name="searchName" placeholder="Дата оформления заказа"></br>
+        <input style="margin-top: 10px" type="submit" class="btn btn-outline-info" value="Найти">
+    </form>
+
+    <div style="margin-left: 20px; margin-top: 15px">
+        <div th:each="el : ${listOrder}">
+            <p th:text="'Дата оформления: ' + ${el.dateOfRelease}"></p>
+            <div th:each="el1 : ${el.getClient()}">
+                <p th:text="'Клиент: ' + ${el1.getSurname()} + ' ' + ${el1.getName()} + ' ' + ${el1.getMiddleName()}"></p>
+            </div>
+            <div th:each="el1 : ${el.getProduct()}">
+                <p th:text="'Товар: ' + ${el1.getNameProduct()} + ', количество: ' + ${el1.getAmount()} + ', цена товара (за шт.): ' + ${el1.getPrice()}"></p>
+            </div>
+
+            <a th:href="'/order/del/' + ${el.getId()}" style="margin-bottom: 20px" class="btn btn-outline-danger">Удалить</a>
+        </div>
+    </div>
+    <div style="margin-left: 20px; margin-bottom: 30px">
+        <a class="btn btn-outline-success" href="/order/add">Добавить заказ</a>
+    </div>
+</body>
+</html>

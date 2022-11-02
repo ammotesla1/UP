@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск чеков</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <div style="margin-left: 15px; margin-top: 15px; margin-bottom: 20px">
+        <div th:each="el : ${check}">
+            <p th:text="'ID: ' + ${el.id}"></p>
+            <p th:text="'Дата печати: ' + ${el.dateOfRelease}"></p>
+
+            <div th:each="el1 : ${el.getOrder()}">
+                <p th:text="'Номер заказа: ' + ${el1.getId()}"/>
+            </div>
+            <div th:each="el1 : ${el.getEmployee()}">
+                <p th:text="'Сотрудник: ' + ${el1.getSurname()}  + ' ' + ${el1.getName()} + ' ' + ${el1.getMiddleName()}"/>
+            </div>
+            <div th:each="el1 : ${el.getClient()}">
+                <p th:text="'Клиент: ' + ${el1.getSurname()}  + ' ' + ${el1.getName()} + ' ' + ${el1.getMiddleName()}"/>
+            </div>
+            <div th:each="el1 : ${el.getShift()}">
+                <p th:text="'Смена: ' + ${el1.getNameShift()}"/>
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 15px; margin-bottom: 30px">
+        <a href="/check" class="btn btn-outline-secondary">Назад</a>
+    </div>
+</body>
+</html>

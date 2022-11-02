@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение сотрудника</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <form method="post" th:object="${employee}" style="margin-left: 20px; margin-top: 15px">
+        <label>
+            <input minlength="1" required id="input-email" name="email" type="email" placeholder="Эл. почта" th:value="${employee.email}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <div>Фамилия</div>
+            <input minlength="1" required name="surname" type="text" placeholder="Фамилия" th:value="${employee.surname}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <div>Имя</div>
+            <input minlength="1" required name="name" type="text" placeholder="Имя" th:value="${employee.name}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <div>Отчество</div>
+            <input minlength="1"  name="middleName" type="text" placeholder="Отчество" th:value="${employee.middleName}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <div>Номер телефона</div>
+            <input minlength="1" required name="phone" type="tel" placeholder="Номер телефона" th:value="${employee.phone}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+
+            <div th:each="post : ${listPost}">
+                <input name="posts" type="checkbox" th:value="${post}" th:checked="${#lists.contains(employee.post,post)}">
+                <label th:text="${post}"></label>
+            </div><br>
+
+<!--            <select id="select-shift" style="margin-bottom: 8px">-->
+<!--                <div th:each="el : ${listColor}">-->
+<!--                    <option th:text="${el.id} + '|' + ${el.nameColor}"></option>-->
+<!--                </div>-->
+<!--            </select><br>-->
+
+            <input type="submit" value="Подтвердить" class="btn btn-primary" style="margin-bottom: 5px;"><br>
+            <a th:href="'/employee/details/' + ${employee.id}" class="btn btn-outline-secondary">Назад</a>
+        </label>
+    </form>
+</body>
+</html>

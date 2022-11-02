@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <div style="margin-left: 15px; margin-top: 15px; margin-bottom: 20px">
+        <div th:each="el : ${order}">
+            <p th:text="${el.id}"></p>
+            <p th:text="${el.dateOfRelease}"></p>
+
+            <div th:each="el1 : ${el.getClient()}">
+                <p th:text="${el1.getSurname()}"></p>
+            </div>
+            <div th:each="el1 : ${el.getProduct()}">
+                <p th:text="${el1.getNameProduct()}"></p>
+            </div>
+        </div>
+    </div>
+    <a href="/order" class="btn btn-outline-secondary" style="margin-left: 15px">Назад</a>
+</body>
+</html>

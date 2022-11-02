@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Подробности товара</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <div th:each="el: ${product}" style="padding: 5px; margin-left: 15px; margin-top: 10px">
+        <p th:text="'ID: ' + ${el.getId()}"></p>
+        <p th:text="'Название товара: ' + ${el.getNameProduct()}"></p>
+        <div th:each="el1 : ${el.getProductType()}">
+            <p th:text="'Тип товара: ' + ${el1.getNameType()}"/>
+        </div>
+        <p th:text="'Количество: ' + ${el.getAmount()}"></p>
+        <p th:text="'Вес: ' + ${el.getWeight()}"></p>
+        <p th:text="'Цена: ' + ${el.getPrice()}"></p>
+        <p th:text="'Дата производства: ' + ${el.getDate_Of_Production()}"></p>
+
+        <div th:each="el1 : ${el.getColor()}">
+            <p th:text="'Цвет: ' + ${el1.getNameColor()}"/>
+        </div>
+        <div th:each="el1 : ${el.getSupplier()}">
+            <p th:text="'Контакты поставщика: ' + ${el1.getEmail()} + ' ' + ${el1.getNameSupplier()}"/>
+        </div>
+        <div th:each="el1 : ${el.getMaterial()}">
+            <p th:text="'Материал: ' + ${el1.getNameMaterial()}"/>
+        </div>
+        <div th:each="el1 : ${el.getWarehouse()}">
+            <p th:text="'Адрес склада: ' + ${el1.getAddress()}"/>
+        </div>
+
+        <a th:href="'/product/edit/' + ${el.getId()}" class="btn btn-outline-primary">Редактировать</a>
+        <a th:href="'/product/del/' + ${el.getId()}" class="btn btn-outline-danger">Удалить</a><br>
+        <a th:href="'/product'" class="btn btn-outline-secondary" style="margin-top: 10px">Назад</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body style="background: #e1e1e1">
+    <div style="margin-left: 15px; margin-top: 15px;">
+        <h2 style="margin-bottom: 10px">Регистрация</h2>
+        <div th:if="${error}">
+            Такой пользователь уже существует.
+        </div>
+
+        <p th:text="${error}"></p>
+
+        <form action="/registration" method="post">
+
+            <div>
+                <input required id="input-email" name="email" type="email" minlength="1" placeholder="Эл. почта" class="form-control" style="background: azure;min-width: 100px; width: 300px"/>
+            </div>
+
+            <div>
+                <input required name="password" type="password" placeholder="Пароль" minlength="1" class="form-control" style="background: azure;min-width: 100px; width: 300px" />
+            </div>
+
+            <div>
+                <input required name="surname" type="text" placeholder="Фамилия" minlength="1" class="form-control" style="background: azure;min-width: 100px; width: 300px" >
+            </div>
+
+            <div>
+                <input required name="name" type="text" placeholder="Имя" minlength="1" class="form-control" style="background: azure;min-width: 100px; width: 300px" >
+            </div>
+
+            <div>
+                <input required name="middleName" type="text" placeholder="Отчество" minlength="1" class="form-control" style="background: azure;min-width: 100px; width: 300px" >
+            </div>
+
+            <div>
+                <input name="phone" type="tel" placeholder="Номер телефона +7(ХХХ)ХХХ-ХХ-ХХ" minlength="1" pattern="[+][7][(][0-9][0-9][0-9][)][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]" class="form-control" style="background: azure;min-width: 100px; width: 300px" />
+            </div>
+
+            <div style="margin-bottom: 8px">
+                <select id="select-shift">
+                    <div th:each="el : ${listShift}">
+                        <option th:text="${el.id} + '|' + ${el.nameShift}"></option>
+                    </div>
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" value="Создать" class="btn btn-outline-success" style="margin-top: 10px; margin-bottom: 10px"/>
+            </div>
+
+            <a href="login.html" class="btn btn-outline-secondary">Назад</a>
+
+            <input id="input-shift" name="shift" style="visibility: hidden; width: 1px; height: 1px">
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+    var select_ = document.getElementById("select-shift");
+    var input_ = document.getElementById("input-shift");
+    var input_email_ = document.getElementById("input-email");
+
+    input_email_.onchange = function (){
+        input_.value = select_.value[0];
+    }
+
+    select_.onchange = function (){
+        input_.value = select_.value[0];
+    }
+</script>

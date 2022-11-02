@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск планов поставок</title>
+</head>
+<body style="background: #e1e1e1">
+    <div style="margin-left: 15px; margin-top: 15px; margin-bottom: 20px">
+        <div th:each="el : ${plan}">
+            <p th:text="${el.id}"></p>
+            <p th:text="${el.dateOfRegistration}"></p>
+
+            <div th:each="el1 : ${el.getProduct()}">
+                <p th:text="${el1.getNameProduct()}"/>
+            </div>
+            <div th:each="el1 : ${el.getSupplier()}">
+                <p th:text="${el1.getNameSupplier()}"/>
+            </div>
+            <div th:each="el1 : ${el.getEmployee()}">
+                <p th:text="${el1.getSurname()}"/>
+            </div>
+        </div>
+    </div>
+    <a href="/plan" class="btn btn-outline-secondary" style="margin-left: 15px">Назад</a>
+</body>
+</html>

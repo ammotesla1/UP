@@ -1,0 +1,27 @@
+<div th:fragment="headerMain">
+  <header style="background: blueviolet; padding: 15px">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <form style="alignment: left; margin-right: 100px" th:action="@{/logout}"   method="post">
+              <input type="submit"   class="btn btn-outline-warning" value="Выйти"/>
+          </form>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+            <li><a href="/productType" class="nav-link px-2 text-white">Типы товаров</a></li>
+            <li><a href="/color/" class="nav-link px-2 text-white">Цвета</a></li>
+            <li><a href="/material" class="nav-link px-2 text-white">Материалы</a></li>
+            <li><a href="/product" class="nav-link px-2 text-white">Товары</a></li>
+            <li><a href="/warehouse" class="nav-link px-2 text-white">Склады</a></li>
+            <li><a href="/order" class="nav-link px-2 text-white">Заказы</a></li>
+            <li><a href="/plan" class="nav-link px-2 text-white">Планы закупок</a></li>
+            <li><a href="/shift" class="nav-link px-2 text-white">Смены</a></li>
+            <li><a href="/employee" class="nav-link px-2 text-white">Сотрудники</a></li>
+            <li><a href="/client" class="nav-link px-2 text-white">Клиенты</a></li>
+            <li><a href="/supplier" class="nav-link px-2 text-white">Курьеры</a></li>
+            <li><a href="/check" class="nav-link px-2 text-white">Чеки</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </header>
+</div>

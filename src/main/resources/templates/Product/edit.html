@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение товара</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragments/header :: headerMain"></div>
+</head>
+<body style="background: #e1e1e1">
+    <form method="post" th:object="${product}" style="margin-left: 20px; margin-top: 15px">
+        <label>
+            <div>Название товара</div>
+            <input required id="input-nameProduct" name="nameProduct" type="text" placeholder="Название товара" th:value="${product.nameProduct}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <!--                <div th:if="${#fields.hasErrors('employee.surname')}" th:errors="*{employee.surname}" style="color: red; margin-bottom: 8px"></div>-->
+            <div>Количество товара</div>
+            <input required name="amount" min="0" type="number" placeholder="Количество товара" th:value="${product.amount}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <!--                <div th:if="${#fields.hasErrors('employee.middle_name')}" th:errors="*{employee.middle_name}" style="color: red; margin-bottom: 8px"></div>-->
+            <div>Вес товара</div>
+            <input required name="weight" min="0" type="text" placeholder="Вес товара" th:value="${product.weight}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <!--                <div th:if="${#fields.hasErrors('employee.age')}" th:errors="*{employee.age}" style="color: red; margin-bottom: 8px"></div>-->
+            <div>Цена товара</div>
+            <input required name="price" min="0" type="text" placeholder="Цена товара" th:value="${product.price}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <!--                <div th:if="${#fields.hasErrors('employee.surname')}" th:errors="*{employee.surname}" style="color: red; margin-bottom: 8px"></div>-->
+            <div>Дата производства</div>
+            <input required name="date_Of_Production" type="text" placeholder="Дата производства" th:value="${product.date_Of_Production}" class="form-control" style="min-width: 100px; width: 300px; margin-bottom: 8px">
+            <!--                <div th:if="${#fields.hasErrors('employee.name')}" th:errors="*{employee.name}" style="color: red; margin-bottom: 8px"></div>-->
+
+            <select id="select-color" style="margin-bottom: 8px">
+                <div th:each="el : ${listColor}">
+                    <option th:text="${el.id} + '|' + ${el.nameColor}"></option>
+                </div>
+            </select><br>
+
+            <select id="select-productType" style="margin-bottom: 8px">
+                <div th:each="el : ${listProductType}">
+                    <option th:text="${el.id} + '|' + ${el.nameType}"></option>
+                </div>
+            </select><br>
+
+            <select id="select-supplier" style="margin-bottom: 8px">
+                <div th:each="el : ${listSupplier}">
+                    <option th:text="${el.id} + '|' + ${el.nameSupplier}"></option>
+                </div>
+            </select><br>
+
+            <select id="select-material" style="margin-bottom: 8px">
+                <div th:each="el : ${listMaterial}">
+                    <option th:text="${el.id} + '|' + ${el.nameMaterial}"></option>
+                </div>
+            </select><br>
+
+            <select id="select-warehouse" style="margin-bottom: 8px">
+                <div th:each="el : ${listWarehouse}">
+                    <option th:text="${el.id} + '|' + ${el.address}"></option>
+                </div>
+            </select><br>
+
+            <input type="submit" value="Подтвердить" class="btn btn-primary" style="margin-bottom: 5px; margin-top: 10px"><br>
+            <a th:href="'/product/details/' + ${product.id}" class="btn btn-outline-secondary">Назад</a>
+
+
+            <input id="input-color" name="color" style="visibility: hidden; width: 1px; height: 1px">
+            <input id="input-supplier" name="supplier" style="visibility: hidden; width: 1px; height: 1px">
+            <input id="input-productType" name="productType" style="visibility: hidden; width: 1px; height: 1px">
+            <input id="input-material" name="material" style="visibility: hidden; width: 1px; height: 1px">
+            <input id="input-warehouse" name="warehouse" style="visibility: hidden; width: 1px; height: 1px">
+        </label>
+    </form>
+</body>
+</html>
+
+<script>
+    var select_color_ = document.getElementById("select-color");
+    var input_color_ = document.getElementById("input-color");
+    var select_supplier_ = document.getElementById("select-supplier");
+    var input_supplier_ = document.getElementById("input-supplier");
+    var select_productType_ = document.getElementById("select-productType");
+    var input_productType_ = document.getElementById("input-productType");
+    var select_material_ = document.getElementById("select-material");
+    var input_material_ = document.getElementById("input-material");
+    var select_warehouse_ = document.getElementById("select-warehouse");
+    var input_warehouse_ = document.getElementById("input-warehouse");
+
+    var input_nameProduct_ = document.getElementById("input-nameProduct");
+
+    input_nameProduct_.onchange = function (){
+        input_color_.value = select_color_.value[0];
+        input_supplier_.value = select_supplier_.value[0];
+        input_productType_.value = select_productType_.value[0];
+        input_material_.value = select_material_.value[0];
+        input_warehouse_.value = select_warehouse_.value[0];
+    }
+
+    select_color_.onchange = function (){
+        input_color_.value = select_color_.value[0];
+    }
+
+    select_supplier_.onchange = function (){
+        input_supplier_.value = select_supplier_.value[0];
+    }
+
+    select_productType_.onchange = function (){
+        input_productType_.value = select_productType_.value[0];
+    }
+
+    select_material_.onchange = function (){
+        input_material_.value = select_material_.value[0];
+    }
+
+    select_warehouse_.onchange = function (){
+        input_warehouse_.value = select_warehouse_.value[0];
+    }
+</script>
